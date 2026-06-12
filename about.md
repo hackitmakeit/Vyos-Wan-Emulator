@@ -36,11 +36,11 @@ small REST API; the frontend is dependency-free vanilla JavaScript.
 
 ### Dark mode (earth brown)
 
-![VyOS WAN Emulator — dark mode](docs/screenshot-dark.png)
+![VyOS WAN Emulator — dark mode](docs/dark-theme-screencap.jpg)
 
 ### Light mode
 
-![VyOS WAN Emulator — light mode](docs/screenshot-light.png)
+![VyOS WAN Emulator — light mode](docs/light-theme-screencap.jpg)
 
 ## How to install
 
