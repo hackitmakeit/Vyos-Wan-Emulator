@@ -66,3 +66,11 @@ Open http://127.0.0.1:5050, enter the router IP / username / password and hit
 - Credentials are stored in plain text in `router_cache.json` for convenience
   (file permissions are restricted to the current user). Delete the file to
   forget them.
+
+## Dark Theme
+![Dark Theme](./docs/dark-theme-screencap.jpg)
+
+## Light Theme
+![Light Theme](./docs/light-theme-screencap.jpg)
+
+
