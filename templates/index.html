@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VyOS WAN Emulator</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">⛁</span>
+    <span class="brand-name">VyOS <em>WAN Emulator</em></span>
+  </div>
+
+  <form id="connectForm" class="connect-form" autocomplete="off">
+    <label>Router <input id="host" type="text" placeholder="10.1.10.15" spellcheck="false"></label>
+    <label>User <input id="username" type="text" placeholder="vyos" spellcheck="false"></label>
+    <label>Password <input id="password" type="password" placeholder="••••••••"></label>
+    <button id="connectBtn" type="submit" class="btn primary">Connect</button>
+    <span class="status"><span id="statusDot" class="dot off"></span><span id="statusText">Disconnected</span></span>
+  </form>
+
+  <button id="themeToggle" class="btn ghost icon-btn" title="Toggle light / dark mode">
+    <span class="theme-icon-dark">☀</span><span class="theme-icon-light">☾</span>
+  </button>
+</header>
+
+<main>
+  <section class="panel" id="interfacesPanel">
+    <div class="panel-head">
+      <h2>Interfaces &amp; Network Emulation</h2>
+      <button id="refreshIfBtn" class="btn ghost small">↻ Refresh</button>
+    </div>
+    <div id="ifGrid" class="if-grid">
+      <p class="empty">Connect to a router to load interfaces.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Interface Counters</h2>
+      <span class="hint">live · refreshes every 5 s</span>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Interface</th><th>RX Packets</th><th>RX Bytes</th><th>RX Drops</th><th>RX Errors</th>
+            <th>TX Packets</th><th>TX Bytes</th><th>TX Drops</th><th>TX Errors</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="countersBody"><tr><td colspan="10" class="empty">No data</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="two-col">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Static Routes</h2>
+        <span class="hint">refreshes every 10 s</span>
+        <button id="addRouteBtn" class="btn primary small">+ Add Route</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Network</th><th>Next Hop</th><th>Interface</th><th></th></tr></thead>
+          <tbody id="routesBody"><tr><td colspan="4" class="empty">No data</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Live ARP Table</h2>
+        <span class="hint">refreshes every 5 s</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>IP Address</th><th>MAC Address</th><th>Interface</th><th>State</th></tr></thead>
+          <tbody id="arpBody"><tr><td colspan="4" class="empty">No data</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Edit IP modal -->
+<div class="modal-backdrop" id="ipModal" hidden>
+  <div class="modal">
+    <h3>Edit IP address — <span id="ipModalIf"></span></h3>
+    <label class="field">Address (CIDR)
+      <input id="ipModalInput" type="text" placeholder="10.1.1.15/24" spellcheck="false">
+    </label>
+    <p class="modal-note">Replaces all existing IPv4 addresses on this interface. Changing the address you are connected through will drop the session.</p>
+    <div class="modal-actions">
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="ipModalSave">Save &amp; Commit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add / Edit route modal -->
+<div class="modal-backdrop" id="routeModal" hidden>
+  <div class="modal">
+    <h3 id="routeModalTitle">Add Static Route</h3>
+    <label class="field">Destination network (CIDR)
+      <input id="routeNetwork" type="text" placeholder="10.1.1.0/24" spellcheck="false">
+    </label>
+    <label class="field">Next-hop IP
+      <input id="routeNextHop" type="text" placeholder="10.1.20.10" spellcheck="false">
+    </label>
+    <p class="modal-note">The egress interface is resolved automatically from the routing table.</p>
+    <div class="modal-actions">
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="routeModalSave">Save &amp; Commit</button>
+    </div>
+  </div>
+</div>
+
+<div id="toasts" class="toasts"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
