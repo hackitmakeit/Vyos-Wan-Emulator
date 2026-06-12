@@ -59,7 +59,8 @@ function withBusy(btn, fn) {
 /* ------------------------------------------------------------------ theme */
 
 function initTheme() {
-  const saved = localStorage.getItem("vyos-theme") || "dark";
+  const param = new URLSearchParams(location.search).get("theme");
+  const saved = param || localStorage.getItem("vyos-theme") || "dark";
   document.documentElement.dataset.theme = saved;
   $("#themeToggle").addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";

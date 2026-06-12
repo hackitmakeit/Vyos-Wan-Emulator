@@ -32,6 +32,16 @@ Under the hood: a Flask backend keeps one persistent netmiko SSH session to
 the router (serialized behind a lock, with automatic reconnect) and exposes a
 small REST API; the frontend is dependency-free vanilla JavaScript.
 
+## Screenshots
+
+### Dark mode (earth brown)
+
+![VyOS WAN Emulator — dark mode](docs/screenshot-dark.png)
+
+### Light mode
+
+![VyOS WAN Emulator — light mode](docs/screenshot-light.png)
+
 ## How to install
 
 Requirements: Python 3.9+ and SSH reachability to a VyOS 1.4+ router.
