@@ -62,7 +62,7 @@ Open http://127.0.0.1:5050, enter the router IP / username / password and hit
   session is shared and serialized behind a lock, with automatic reconnect.
 - Editing the IP of the interface you are connected through will drop the SSH
   session — the app warns about this in the Edit IP dialog.
-- Counters/ARP poll every 5 s and routes every 10 s, matching the spec.
+- Counters/ARP poll every 5s and routes every 10s.
 - Credentials are stored in plain text in `router_cache.json` for convenience
   (file permissions are restricted to the current user). Delete the file to
   forget them.
